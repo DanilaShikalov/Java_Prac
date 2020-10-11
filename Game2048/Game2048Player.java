@@ -14,12 +14,8 @@ public abstract class Game2048Player {
             worst.Test(winner, gameField1);
         }
         while (game2048Field.isMoveAvailable()) {
-            //System.out.println(game2048Field);
             step();
-            //Thread.sleep(50);
         }
-        System.out.println("GAME OVER");
-        System.out.println(game2048Field);
     }
 
     protected abstract void step();

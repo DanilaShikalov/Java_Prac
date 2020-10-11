@@ -20,14 +20,6 @@ public class Massiv {
         return Simbols.get(i);
     }
 
-    public void SimbolsPrint()
-    {
-        for (int i = 0; i < Simbols.size(); i++)
-        {
-            System.out.print(Simbols.get(i) + " ");
-        }
-        System.out.println();
-    }
 
     public int GetSumma()
     {

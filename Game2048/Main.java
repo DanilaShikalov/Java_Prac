@@ -3,10 +3,8 @@ package com.company.Game2048;
 import com.company.Game2048.player.*;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class Main {
-    //Massiv winner = new Massiv();
     public static void main(String[] args) throws Exception {
         Worst worst = new Worst();
         GameField gameField = new GameField(4);
@@ -19,31 +17,11 @@ public class Main {
             for (int j = 0; j < 4; j++) {
                 if (gameField.getCells(i, j).getCell() != null)
                     array[i][j] = gameField.getCells(i, j).getCell().getValue();
-                //System.out.println(array[i][j]);
-                //if (array[i][j] != 0)
-                //System.out.println(gameField.getCells(i,j).getCell().getValue());
             }
         }
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 4; j++) {
-//                if (array[i][j] != 0) {
-//                    CellHolder target = gameField1.getCells(i, j);
-//                    target.setCell(new Cell(array[i][j]));
-//                }
-//            }
-//        }
         int q = 0;
         do {
-            for (int k = 0; k < 3; k++) {
-//                for (int i = 0; i < 4; i++) {
-//                    for (int j = 0; j < 4; j++) {
-//                        if (gameField.getCells(i, j).getCell() != null)
-//                            array[i][j] = gameField.getCells(i, j).getCell().getValue();
-//                        //System.out.println(array[i][j]);
-//                        //if (array[i][j] != 0)
-//                        //System.out.println(gameField.getCells(i,j).getCell().getValue());
-//                    }
-//                }
+            for (int k = 0; k < 1000; k++) {
                 for (int i = 0; i < 4; i++) {
                     for (int j = 0; j < 4; j++) {
                         if (array[i][j] != 0) {
@@ -54,9 +32,7 @@ public class Main {
                 }
                 winner = new Massiv();
                 objects.add(winner);
-                //Game2048Player player = new Random2048Player(gameField);
                 Game2048Player player1 = new Random2048Player(gameField1);
-                //player.startGame();
                 player1.startGame(worst, winner, gameField1);
                 for (int i = 0; i < 4; i++) {
                     for (int j = 0; j < 4; j++) {
@@ -78,50 +54,27 @@ public class Main {
             }
             array = new int[4][4];
             int i = 0;
-//            while (i != 15)
-//            {
                 for (int j = 0; j < 4; j++)
                 {
                     for (int k = 0; k < 4; k++)
                     {
                         array[j][k] = objects.get(p).getSimbols(i);
-                        System.out.println(objects.get(p).getSimbols(i));
+                        System.out.print(objects.get(p).getSimbols(i) + "\t");
                         i = i + 1;
                     }
+                    System.out.println();
                 }
-            //}
-//            for (int u = 0;  u < 4; u++) {
-//                for (int j = 0; j < 4; j++) {
-//                    if (array[u][j] == 0)
-//                        System.out.print("    ");
-//                    else if (array[u][j] < 10)
-//                        System.out.print("  " + array[u][j] + " ");
-//                    else if (array[u][j] < 100)
-//                        System.out.print(" " + array[u][j] + " ");
-//                    else if (array[u][j] < 1000)
-//                        System.out.print(" " + array[u][j]);
-//                    else System.out.print("" + array[u][j]);
-//                }
-//                System.out.println();
-//            }
-//            System.out.println("______________________");
-                //if (cell == null) {
-//            return "    ";
-//        }
-//        int value = cell.getValue();
-//        if (value < 10) {
-//            return "  " + value + " ";
-//        } else if (value < 100) {
-//            return " " + value + " ";
-//        } else if (value < 1000) {
-//            return " " + value;
-//        } else return "" + value;
+            System.out.println("________________");
+            for (int w = 0; w < 4; w++)
+            {
+                for (int e = 0; e < 4; e++)
+                {
+                    if (array[w][e] == 2048) q = 1;
+                }
+            }
+            objects.clear();
+        } while (q != 2);
+        System.out.println("You are Winner!");
 
-            q = q + 1;
-        } while (q != 1);
-        for (int i = 0; i < objects.size(); i++)
-        {
-            objects.get(i).SimbolsPrint();
-        }
     }
 }
