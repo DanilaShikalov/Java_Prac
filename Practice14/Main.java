@@ -6,20 +6,19 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        Regex test = new Regex();
         Scanner scanner = new Scanner(System.in);
-        int N = scanner.nextInt();
+        //int N = scanner.nextInt();
+        String t = scanner.nextLine();
+        int N = Integer.parseInt(t);
         String[] Regex = new String[N];
         String[] Symbols = new String[N];
         for (int i = 0; i < N; i++) {
             Regex[i] = scanner.next();
             Symbols[i] = scanner.next();
-            test.setRegex(Regex[i]);
-            test.setSymbol(Symbols[i]);
         }
         String s = scanner.next();
-        RegexS(Regex, Symbols, s);
-        NotRegexS(Regex, Symbols, s);
+        //RegexS(Regex, Symbols, s);
+        NotRegexS(Regex, Symbols, s, N);
     }
 
     public static void RegexS(String[] Regex, String[] Symbols, String s) {
@@ -32,8 +31,7 @@ public class Main {
                     matchers = pattern.matcher(s.substring(i, i + Regex[j].length()));
                     if (matchers.find()) {
                         s = s.substring(0, i) + matchers.replaceFirst(Symbols[j] + "|") + s.substring(i + Regex[j].length());
-                        i += Symbols[j].length();
-                        break;
+                        i += Symbols[j].length() - 1;
                     }
                 }
             }
@@ -41,20 +39,30 @@ public class Main {
         pattern = Pattern.compile("\\|");
         matchers = pattern.matcher(s);
         s = matchers.replaceAll("");
-        System.out.println(s);
+        System.out.print(s);
     }
 
-    public static void NotRegexS(String[] Regex, String[] Symbols, String s) {
+    public static void NotRegexS(String[] Regex, String[] Symbols, String s, int N) {
+        String to_out = "";
         for (int i = 0; i < s.length(); i++) {
-            for (int j = 0; j < Regex.length; j++) {
-                if (i + Regex[j].length() < s.length() && s.startsWith(Regex[j], i)) {
-                    s = s.replace(Regex[j], Symbols[j] + "|");
-                    i += Symbols[j].length();
-                    break;
+            int flag = 0;
+            for (int j = 0; j < N; j++) {
+                if (i + Regex[j].length() <= s.length()) {
+                    String key = s.substring(i, i + Regex[j].length());
+                    if (Regex[j].equals(key)) {
+                        flag = 1;
+                        //s = s.replace(Regex[j], Symbols[j] + "");
+                        to_out += Symbols[j];
+                        i += Regex[j].length() - 1;
+                    }
                 }
             }
+            if (flag == 0)
+            {
+                to_out += s.charAt(i);
+            }
         }
-        s = s.replaceAll("\\|", "");
-        System.out.println(s);
+        //s = s.replaceAll(" ", "");
+        System.out.print(to_out);
     }
 }
