@@ -21,11 +21,11 @@ public class Client {
             if (message.equals("/exit"))
             {
                 s = "exit";
-                sendMessage(s,"255.255.255.255", 9087);
+                sendMessage(s,"25.34.119.119", 9087);
                 break;
             }
             else s = Name + ": " + message;
-            sendMessage(s,"255.255.255.255", 9087);
+            sendMessage(s,"25.34.119.119", 9087);
         }
     }
 
