@@ -47,12 +47,14 @@ public class XandOs {
                         e.printStackTrace();
                     }
                     String message = new String(buffer, 0, packet.getLength());
+                    System.out.println(message);
                     int number = Integer.parseInt(message.substring(0,1));
                     String symbol = message.substring(1,2);
                     //arrayButton[number].setText(symbol);
                     Font BigFontTR = new Font("TimesRoman", Font.BOLD, 64);
                     arrayButton[number].setFont(BigFontTR);
                     arrayButton[number].setText(symbol);
+                    //System.out.println("YES");
                 }
             }
         });

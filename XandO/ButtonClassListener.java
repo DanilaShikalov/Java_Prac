@@ -30,6 +30,7 @@ public class ButtonClassListener implements ActionListener {
 //            jButton.setText(jButton.getActionCommand());
             try {
                 sendMessage(Number + str, "255.255.255.255", 9087);
+                sendMessage(Number + str, "25.34.119.119", 9087);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
